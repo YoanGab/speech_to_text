@@ -1,0 +1,10 @@
+# IDE Files
+.idea/
+
+# MacOS Files
+.DS_Store
+
+# Cache files
+__pycache__/
+*.pyc
+

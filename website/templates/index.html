@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Load your wav or mp3 file and get the transcription !</h1>
+
+        <form action="{{ url_for('views.index') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="language">Language</label>
+                <select class="form-control" id="language" name="language">
+                    <option value="af">Afrikaans</option>
+                    <option value="eu">Basque</option>
+                    <option value="bg">Bulgarian</option>
+                    <option value="ca">Catalan</option>
+                    <option value="ar-EG">Arabic(Egypt)</option>
+                    <option value="ar-JO">Arabic(Jordan)</option>
+                    <option value="ar-KW">Arabic(Kuwait)</option>
+                    <option value="ar-LB">Arabic(Lebanon)</option>
+                    <option value="ar-QA">Arabic(Qatar)</option>
+                    <option value="ar-AE">Arabic(UAE)</option>
+                    <option value="ar-MA">Arabic(Morocco)</option>
+                    <option value="ar-IQ">Arabic(Iraq)</option>
+                    <option value="ar-DZ">Arabic(Algeria)</option>
+                    <option value="ar-BH">Arabic(Bahrain)</option>
+                    <option value="ar-LY">Arabic(Lybia)</option>
+                    <option value="ar-OM">Arabic(Oman)</option>
+                    <option value="ar-SA">Arabic(Saudi Arabia)</option>
+                    <option value="ar-TN">Arabic(Tunisia)</option>
+                    <option value="ar-YE">Arabic(Yemen)</option>
+                    <option value="cs">Czech</option>
+                    <option value="nl-NL">Dutch</option>
+                    <option value="en-AU">English(Australia)</option>
+                    <option value="en-CA">English(Canada)</option>
+                    <option value="en-IN">English(India)</option>
+                    <option value="en-NZ">English(New Zealand)</option>
+                    <option value="en-ZA">English(South Africa)</option>
+                    <option value="en-GB">English(UK)</option>
+                    <option value="en-US">English(US)</option>
+                    <option value="fi">Finnish</option>
+                    <option value="fr-FR" selected>French</option>
+                    <option value="gl">Galician</option>
+                    <option value="de-DE">German</option>
+                    <option value="he">Hebrew</option>
+                    <option value="hu">Hungarian</option>
+                    <option value="is">Icelandic</option>
+                    <option value="it-IT">Italian</option>
+                    <option value="id">Indonesian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="la">Latin</option>
+                    <option value="zh-CN">Mandarin Chinese</option>
+                    <option value="zh-TW">Traditional Taiwan</option>
+                    <option value="?">Simplified China zh-CN</option>
+                    <option value="zh-HK">Simplified Hong Kong</option>
+                    <option value="zh-yue">Yue Chinese(Traditional Hong Kong)</option>
+                    <option value="ms-MY">Malaysian</option>
+                    <option value="no-NO">Norwegian</option>
+                    <option value="pl">Polish</option>
+                    <option value="xx-piglatin">Pig Latin</option>
+                    <option value="pt-PT">Portuguese</option>
+                    <option value="pt-BR">Portuguese(brasil)</option>
+                    <option value="ro-RO">Romanian</option>
+                    <option value="ru">Russian</option>
+                    <option value="sr-SP">Serbian</option>
+                    <option value="sk">Slovak</option>
+                    <option value="es-AR">Spanish(Argentina)</option>
+                    <option value="es-BO">Spanish(Bolivia)</option>
+                    <option value="es-CL">Spanish( Chile)</option>
+                    <option value="es-CO">Spanish(Colombia)</option>
+                    <option value="es-CR">Spanish(Costa Rica)</option>
+                    <option value="es-DO">Spanish(Dominican Republic)</option>
+                    <option value="es-EC">Spanish(Ecuador)</option>
+                    <option value="es-SV">Spanish(El Salvador)</option>
+                    <option value="es-GT">Spanish(Guatemala)</option>
+                    <option value="es-HN">Spanish(Honduras)</option>
+                    <option value="es-MX">Spanish(Mexico)</option>
+                    <option value="es-NI">Spanish(Nicaragua)</option>
+                    <option value="es-PA">Spanish(Panama)</option>
+                    <option value="es-PY">Spanish(Paraguay)</option>
+                    <option value="es-PE">Spanish(Peru)</option>
+                    <option value="es-PR">Spanish(Puerto Rico)</option>
+                    <option value="es-ES">Spanish(Spain)</option>
+                    <option value="es-US">Spanish(US)</option>
+                    <option value="es-UY">Spanish(Uruguay)</option>
+                    <option value="es-VE">Spanish(Venezuela)</option>
+                    <option value="sv-SE">Swedish</option>
+                    <option value="tr">Turkish</option>
+                    <option value="zu">Zulu</option>
+                </select>
+            </div>
+            <input class="upload-file" type="file" id="audioFile" name="file" style="display: none;" />
+            <input type="button" value="Add File…" onclick="document.getElementById('audioFile').click();" />
+        </form>
+    </div>
+
+    <div id="transcription-box">
+        <div id="transcription-box-header">
+            <div id="transcription-box-header-title">
+                <h2>Transcription</h2>
+            </div>
+        </div>
+        <div id="transcription-box-content">
+            {{ transcription }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+<script>
+    $('.upload-file').change(function () {
+        $(this).closest('form').submit();
+    });
+</script>
+{% endblock %}
